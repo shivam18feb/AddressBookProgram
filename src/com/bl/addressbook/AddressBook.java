@@ -1,22 +1,41 @@
 package com.bl.addressbook;
 
-public class AddressBook{
+public class AddressBook extends Contact{
 
-    String firstName, lastName, address, city, state, phoneNo, email;
-    long zip;
-    public void setDetails(){
+    String address, city, state;
+    int zip;
+    long phoneNo;
 
-        firstName = "Shivam";
-        lastName = "Pandey";
-        address = "124";
-        city ="Prayagraj";
-        state = "Uttar Pradesh";
-        zip = 211004;
-        phoneNo = "8100576002";
-        email = "abc@gmail.com";
+    public void setAddress(String address){
+        this.address = address;
     }
-    public void printValue(){
-
-        System.out.println("First Nmae : " + firstName  + "\nLast Name : " + lastName + "\nAddress : " + address + "\nCity : " + city + "\nState : " + state + "\nZip : " + zip + "\nPhone Number : " + phoneNo + "\nE-mail : " + email); 
+    public String getAddress(){
+        return address;
     }
+    public void setCity(String city){
+        this.city = city;
+    }
+    public String getCity(){
+        return city;
+    }
+    public void setState(String state){
+        this.state = state;
+    }
+    public String getState(){
+        return state;
+    }
+    public void setPhoneNo(long phoneNo){
+        this.phoneNo = phoneNo;
+    }
+    public long getPhoneNo(){
+        return phoneNo;
+    }
+    public void setZip(int zip){
+        this.zip = zip;
+    }
+    public int getZip(){
+        return zip;
+    }
+    
+
 }
