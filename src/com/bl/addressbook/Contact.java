@@ -1,8 +1,7 @@
 package com.bl.addressbook;
-
 public class Contact{
 
-	String firstName, lastName, email;
+String firstName, lastName, email;
 
     public void setFirstName(String firstName){
         this.firstName = firstName;

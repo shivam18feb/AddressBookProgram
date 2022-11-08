@@ -1,6 +1,7 @@
 package com.bl.addressbook;
 import java.util.Scanner;
-import java.util.ArrayList;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 public class AddressBookMain{
 
@@ -11,8 +12,7 @@ public class AddressBookMain{
         long phoneNo;
         char option;
 
-        ArrayList<AddressBook> contactArr = new ArrayList<AddressBook>();
-
+        OperateContact operate = new OperateContact();
         Scanner sc= new Scanner(System.in);
         do{
         
@@ -49,26 +49,26 @@ public class AddressBookMain{
             zip = sc.nextInt(); 
             contact.setZip(zip);
 
-            contactArr.add(contact);
+            operate.storeContact(firstName, contact);
+
             System.out.print("\nDo you want to add one more contact? press Y / N : ");
             option = sc.next().charAt(0);
             sc.nextLine();
         }while(option == 'Y');
 
-        OperateContact operate = new OperateContact();
         System.out.print("\nDo you want to edit? press Y / N : ");
         char editOption = sc.next().charAt(0);
         if(editOption == 'Y'){
-            operate.editContact(contactArr);
+            operate.editContact();
         }
-        operate.showContact(contactArr);
+        operate.showContact();
     
-        System.out.print("\n\nDo you want to delete? press Y / N : ");
+        System.out.print("\nDo you want to delete? press Y / N : ");
         char deleteOption = sc.next().charAt(0);
         if(deleteOption == 'Y'){
-            contactArr = operate.deleteContact(contactArr);
+            operate.deleteContact();
         }
-        operate.showContact(contactArr);
+        operate.showContact();
 
         sc.close();
     }
