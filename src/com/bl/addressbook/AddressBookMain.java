@@ -1,5 +1,7 @@
 package com.bl.addressbook;
-import java.util.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 public class AddressBookMain{
 
     public static void main(String[] args){
@@ -7,15 +9,14 @@ public class AddressBookMain{
         String firstName, lastName, address, city, state, email;
         int zip;
         long phoneNo;
-        //array to store object of type AddressBook
-        AddressBook[] contactArr = new AddressBook[2];
+        char option;
+
+        ArrayList<AddressBook> contactArr = new ArrayList<AddressBook>();
 
         Scanner sc= new Scanner(System.in);
-        for(int i=0; i<contactArr.length; i++){
-           
-            //create new object in each iteration
+        do{
+        
             AddressBook contact = new AddressBook();
-
             System.out.print("\nEnter First Name  : ");  
             firstName = sc.nextLine();
             contact.setFirstName(firstName);
@@ -48,31 +49,27 @@ public class AddressBookMain{
             zip = sc.nextInt(); 
             contact.setZip(zip);
 
+            contactArr.add(contact);
+            System.out.print("\nDo you want to add one more contact? press Y / N : ");
+            option = sc.next().charAt(0);
             sc.nextLine();
-            
-            contactArr[i] = contact;
-        }
+        }while(option == 'Y');
+
+        OperateContact operate = new OperateContact();
         System.out.print("\nDo you want to edit? press Y / N : ");
         char editOption = sc.next().charAt(0);
-        AddressBook person = new AddressBook();
         if(editOption == 'Y'){
-            person.editContact(contactArr);
+            operate.editContact(contactArr);
         }
-        for(int i=0; i<contactArr.length; i++){
-
-           contactArr[i].showContact(contactArr[i]);
-        }
-        sc.nextLine();
-        System.out.print("\nDo you want to delete? press Y / N : ");
+        operate.showContact(contactArr);
+    
+        System.out.print("\n\nDo you want to delete? press Y / N : ");
         char deleteOption = sc.next().charAt(0);
         if(deleteOption == 'Y'){
-            person.deleteContact(contactArr);
+            contactArr = operate.deleteContact(contactArr);
         }
-        
-        for(int i=0; i<contactArr.length; i++){
+        operate.showContact(contactArr);
 
-           contactArr[i].showContact(contactArr[i]);
-        }
-    sc.close();
+        sc.close();
     }
 }
